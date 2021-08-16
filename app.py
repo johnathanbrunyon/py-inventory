@@ -1,3 +1,7 @@
+import tkinter as tk
+from tkinter.constants import TOP
+from typing import Text
+
 # TODO:
 # Create a list to store products
 # Create a product 'class'
@@ -13,10 +17,19 @@ class Product:
 class Inventory:
     def __init__(self):
         self.invenList = []
+        self.idIndex = 1
     def AddProduct(self, p):
         self.invenList.append(p)
     def PrintInventory(self):
-        print("ID\t\t\t\tName\t\t\t\tPrice")
-        print("---------------------------------------------------------------------------------")
         for p in self.invenList:
-            print(str(p.id) + "\t\t\t\t" + p.name + "\t\t\t$" + str(p.price))
+            print("ID: " + str(p.id))
+            print("Name: " + p.name + "\nPrice: $" + str(p.price))
+            print("-----------------------------------")
+
+inv = Inventory() #  This is the global inventory
+
+def CreateProduct():
+    name = input("Name: ")
+    price = input("Price: ")
+    p = Product(inv.idIndex, name, price,  inv)
+    inv.idIndex += 1
