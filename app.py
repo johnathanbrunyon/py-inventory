@@ -1,6 +1,4 @@
 # TODO:
-# Edit Product
-# Get Sum Of All Products
 # Menu
 
 class Product:
@@ -28,6 +26,7 @@ class Inventory:
         for p in self.invenList:
             if p.id == int(idLook):
                 print(p.PrintInformation())
+                return idLook
     def RemoveProduct(self):
         choice = input("What is the ID of the product you want to remove? ")
         for p in self.invenList:
@@ -45,8 +44,30 @@ class Inventory:
         for p in self.invenList:
             sum += p.price
         return sum
+    def EditProduct(self):
+       idLook = input("ID to lookup: ")
+       for p in self.invenList:
+           if p.id == int(idLook):
+            print(p.PrintInformation())
+            target = p
+       print("1. Name\n2. Price\n3. Cancel")
+       choice = input("What would you like to edit? ")
+       if int(choice) == 1:
+           newName = input("What do you want the new name to be? ")
+           print("Changing the name from " + target.name + " -> " + newName)
+           target.name = newName
+           print("Done! New name is " + target.name)
+       elif int(choice) == 2:
+           newPrice = input("What do you want the new price to be? ")
+           newPrice = int(newPrice)
+           print("Changing the price from " + str(target.price) + " -> " + str(newPrice))
+           target.price = int(newPrice)
+           print("Done! New price is " + str(target.price))
+       else:
+          return
         
 
+        
 inv = Inventory() #  This is the global inventory
 
 def CreateProduct():
@@ -59,6 +80,7 @@ a = Product(1, "test", 25, inv)
 b = Product(2, "test", 25, inv)
 x = Product(3, "test", 25, inv)
 y = Product(4, "test", 25, inv)
-inv.RemoveProduct()
+inv.PrintInventory()
+inv.EditProduct()
 inv.PrintInventory()
 print("Sum: " + str(inv.GetSum()))
