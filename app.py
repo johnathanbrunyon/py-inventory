@@ -16,11 +16,15 @@ class Inventory:
         self.idIndex = 1
     def AddProduct(self, p):
         self.invenList.append(p)
+        self.idIndex += 1
     def PrintInventory(self):
         for p in self.invenList:
-            print("ID: " + str(p.id))
-            print("Name: " + p.name + "\nPrice: $" + str(p.price))
-            print("-----------------------------------")
+            try:
+                p.PrintInformation()
+                print("-----------------------------------")
+            except Exception:
+                break
+            
     def LookupProduct(self):
         idLook = input("ID to lookup: ")
         for p in self.invenList:
