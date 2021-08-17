@@ -68,6 +68,7 @@ class Inventory:
         
 
         
+
 inv = Inventory() #  This is the global inventory
 
 def CreateProduct():
@@ -76,11 +77,33 @@ def CreateProduct():
     p = Product(inv.idIndex, name, price, inv)
     inv.idIndex += 1
 
+def Menu():
+    loop = True
+    while loop == True:
+        print("1. Add Product\n2. Lookup Product\n3. Edit Product\n4. Remove Product\n5. Get Sum of Inventory\n6. View Inventory\n7. Exit")
+        choice = input("Choose a menu option: ")
+        choice = int(choice)
+        if choice == 1:
+            p = CreateProduct()
+            inv.AddProduct(p)
+        elif choice == 2:
+            inv.LookupProduct()
+        elif choice == 3:
+            inv.EditProduct()
+        elif choice == 4:
+            inv.RemoveProduct()
+        elif choice == 5:
+            inv.GetSum()
+        elif choice == 6:
+            inv.PrintInventory()
+        elif choice == 7:
+            loop = False
+        else:
+            print("Enter a valid menu option")
+
+
 a = Product(1, "test", 25, inv)
 b = Product(2, "test", 25, inv)
 x = Product(3, "test", 25, inv)
 y = Product(4, "test", 25, inv)
-inv.PrintInventory()
-inv.EditProduct()
-inv.PrintInventory()
-print("Sum: " + str(inv.GetSum()))
+Menu()
