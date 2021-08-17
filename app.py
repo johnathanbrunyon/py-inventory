@@ -40,6 +40,11 @@ class Inventory:
             print("The product with the ID of " + choice + " has been removed.")
         elif removed == False:
             print("Product with the ID of " + choice + " cannot be found.")
+    def GetSum(self):
+        sum = 0
+        for p in self.invenList:
+            sum += p.price
+        return sum
         
 
 inv = Inventory() #  This is the global inventory
@@ -50,6 +55,10 @@ def CreateProduct():
     p = Product(inv.idIndex, name, price, inv)
     inv.idIndex += 1
 
-x = Product(inv.idIndex, "test", 29, inv)
+a = Product(1, "test", 25, inv)
+b = Product(2, "test", 25, inv)
+x = Product(3, "test", 25, inv)
+y = Product(4, "test", 25, inv)
 inv.RemoveProduct()
 inv.PrintInventory()
+print("Sum: " + str(inv.GetSum()))
